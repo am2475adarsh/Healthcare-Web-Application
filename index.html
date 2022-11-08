@@ -1,0 +1,711 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lora&display=swap" rel="stylesheet">
+    <script src="https://code.jquery.com/jquery-2.2.4.min.js"
+        integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous">
+        </script>
+    <script src="https://cdn.zingchart.com/zingchart.min.js"></script>
+    <script>
+        zingchart.MODULESDIR = "https://cdn.zingchart.com/modules/";
+    </script>
+</head>
+
+<body>
+    <section class="panel">
+        <div class="logo"></div>
+        <div class="list">
+            <div class="details active" id="results" onclick="myfunc(this.id)"><i class="fa fa-medkit"
+                    aria-hidden="true" style="position: absolute;left:20px;"></i>Home
+
+            </div>
+            <div class="details" id="student_det" onclick="myfunc(this.id)"> <i class="fa fa-life-ring"
+                    aria-hidden="true" style="position: absolute;left:20px;"></i>Check BMI
+
+            </div>
+            <div class="details" id="cholestrol" onclick="myfunc(this.id)"> <i class="fa fa-life-ring"
+                    aria-hidden="true" style="position: absolute;left:20px;"></i>Check Cholestrol Level
+
+            </div>
+        </div>
+    </section>
+    <div id="dvImage"
+        style="height: 100vh; width: 80%;margin-left: 257px; background-size: cover; background-repeat: no-repeat;">
+    </div>
+    <section class="main">
+        <div class="title">Healthcare Web Application</div>
+        <div class="container" id="resultscont">
+            <div style="display:flex; justify-content: center;align-items: center; margin-top: 20px;">
+                <div id="zc"></div>
+                <div id="chkCountries" class="countries"></div>
+            </div>
+        </div>
+        <!-- <div style=" display:inline-flex; justify-content: center;align-items: center; padding:20px; "> -->
+        <div class="container active2" id="student_detcont" style="margin-top: 60px;">
+            <div style="display: inline-flex;  justify-content: center;align-items: center; margin-left: 90px;">
+                <div class="container-main">
+                    <div class="box">
+                        <label for="age" class="fl fontLabel">Age : </label>
+                        <div class="new iconBox">
+
+                            <i class="fa fa-clock-o" aria-hidden="true" style="font-size: 14px;"></i>
+
+                        </div>
+                        <div class="fr">
+                            <input type="text" name="age" id="age" placeholder="Age: 2 - 120" class="textBox"
+                                autofocus="on" required>
+                        </div>
+                        <div class="clr"></div>
+                    </div>
+                    <!--First name-->
+
+
+                    <div class="box">
+                        <label for="gender" class="fl fontLabel"> Gender: </label>
+                        <div class="new iconBox">
+
+                            <i class="fa fa-venus-mars" aria-hidden="true" style="font-size: 14px;"></i>
+                        </div>
+                        <div class="fr" style="float:left;margin-left: 25px;">
+                            <select name="gender" id="gender" style="height:33px;width:173px;">
+                                <option value="Male">Male</option>
+                                <option value="Female">Female</option>
+                            </select>
+                        </div>
+                        <div class="clr"></div>
+                    </div>
+
+                    <!--Second name-->
+                    <div class="box">
+                        <label for="height" class="fl fontLabel"> Height: </label>
+                        <div class="fl iconBox">
+                            <i class="fa fa-male" aria-hidden="true" style="font-size: 14px;"></i>
+                        </div>
+                        <div class="fr">
+                            <input type="text" required name="height" id="height" placeholder="cms" class="textBox">
+                        </div>
+                        <div class="clr"></div>
+                    </div>
+                    <!--Second name-->
+
+
+                    <!---Phone No.------>
+                    <div class="box">
+                        <label for="weight" class="fl fontLabel"> Weight: </label>
+                        <div class="fl iconBox">
+                            <i class="fa fa-balance-scale" aria-hidden="true" style="font-size: 14px;"></i>
+                        </div>
+                        <div class="fr">
+                            <input type="text" required name="weight" id="weight" placeholder="kgs" class="textBox">
+                        </div>
+                        <div class="clr"></div>
+                    </div>
+                    <!---Phone No.---->
+
+
+                    <!---Submit Button------>
+                    <div class="box" style="background: #2d3e3f">
+                        <input type="Submit" name="submit" class="submit" id="check" value="CHECK">
+                    </div>
+                </div>
+                <div class="body" style="margin-left: 70px; 
+                backdrop-filter: blur(4px); padding:15px; border-radius: 50px;">
+                    <div id="guage">
+                        <svg xmlns="http://www.w3.org/2000/svg" xml:space="preserve" width="" height="" version="1.1"
+                            style="shape-rendering:geometricPrecision; text-rendering:geometricPrecision; image-rendering:optimizeQuality; fill-rule:evenodd; clip-rule:evenodd"
+                            viewBox="0 0 3486.3 3486.3" xmlns:xlink="http://www.w3.org/1999/xlink">
+                            <defs>
+                                <style type="text/css">
+                                    <![CDATA[
+                                    .fil1 {
+                                        fill: none
+                                    }
+
+                                    .fil0 {
+                                        fill: url(#id0)
+                                    }
+                                    ]]>
+                                </style>
+                                <linearGradient id="id0" gradientUnits="userSpaceOnUse" x1="-3.41" y1="1744.6"
+                                    x2="3550.74" y2="1744.59">
+                                    <stop offset="0.1" style="stop-opacity:1; stop-color:red" />
+                                    <!--           <stop offset="0.1" style="stop-opacity:1; stop-color:#FFE600"/> -->
+                                    <stop offset="0.18" style="stop-opacity:1; stop-color:lime" />
+                                    <stop offset="0.4" style="stop-opacity:1; stop-color:#FFE600" />
+                                    <stop offset="0.8" style="stop-opacity:1; stop-color:red" />
+                                </linearGradient>
+                            </defs>
+                            <g id="Layer_x0020_1">
+                                <metadata id="CorelCorpID_0Corel-Layer" />
+                                <path class="fil0"
+                                    d="M1761.22 0c134.46,1.5 265.26,18.17 390.78,48.44l-64.38 240.28c-104.96,-24.86 -214.18,-38.66 -326.4,-40.11l0 -248.6zm429.14 58.17c129.18,34.3 252.46,83.03 368.03,144.39l-124.4 215.47c-96.9,-50.69 -200.05,-91.06 -307.98,-119.68l64.35 -240.17zm402.78 163.34c116.57,65.32 224.89,143.62 322.97,232.97l-176.02 176.02c-82.65,-74.14 -173.61,-139.18 -271.29,-193.62l124.34 -215.36zm351.94 259.96c97.2,92.64 183.71,196.4 257.52,309.22l-215.76 124.57c-62.73,-94.02 -135.8,-180.55 -217.62,-257.92l175.87 -175.87zm278.84 342.6c71.4,114.75 129.84,238.41 173.3,368.91l-240.79 64.52c-37.61,-109.27 -87.47,-212.84 -148.02,-309.01l215.51 -124.42zm185.36 406.65c39.92,129.74 65.06,265.94 73.6,406.63l-249.2 0c-8.39,-118.4 -30.46,-233.01 -64.81,-342.21l240.41 -64.42zm-1687.63 -982.11c-112.21,1.47 -221.45,15.23 -326.4,40.12l-64.38 -240.28c125.5,-30.3 256.32,-46.94 390.78,-48.44l0 248.6zm-364.79 49.74c-107.93,28.64 -211.08,68.99 -307.98,119.69l-124.4 -215.47c115.56,-61.37 238.86,-110.07 368.03,-144.39l64.35 240.17zm-342.79 138.53c-97.67,54.45 -188.65,119.48 -271.29,193.62l-176.01 -176.01c98.07,-89.36 206.41,-167.63 322.97,-232.97l124.34 215.36zm-300.41 220.47c-81.81,77.38 -154.9,163.9 -217.62,257.92l-215.76 -124.57c73.8,-112.82 160.32,-216.56 257.51,-309.22l175.87 175.87zm-239.19 291.16c-60.54,96.17 -110.42,199.74 -148.02,309.01l-240.79 -64.52c43.45,-130.51 101.9,-254.16 173.3,-368.92l215.51 124.42zm-160.46 346.64c-34.34,109.2 -56.42,223.81 -64.81,342.21l-249.2 0c8.54,-140.69 33.68,-276.89 73.6,-406.63l240.41 64.42z" />
+                                <circle class="fil1" cx="1743.15" cy="1743.15" r="1743.15" />
+                                <circle class="fil1" cx="1743.15" cy="1743.15" r="1498.86" />
+                            </g>
+                        </svg>
+                        <div id="spinner">
+                            <div id="pointer"></div>
+                        </div>
+                        <h2 class="value">BMI</h2>
+                        <p class="small-text">status</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="container active2" id="cholestrolcont">
+            <div style="display:flex;  justify-content: center;align-items: center; margin-top: 50px;">
+                <div class="container-main" style="height:100%">
+                    <div class="box">
+                        <label for="LDL Level" class="fl fontLabel">LDL Level: </label>
+                        <div class="new iconBox">
+
+                            <i class="fa fa-clock-o" aria-hidden="true" style="font-size: 14px;"></i>
+
+                        </div>
+                        <div class="fr">
+                            <input type="text" name="LDL Level" id="ldl" placeholder="mg/dL" class="textBox"
+                                autofocus="on" required>
+                        </div>
+                        <div class="clr"></div>
+                    </div>
+                    <!--First name-->
+
+
+                    <div class="box">
+                        <label for="cgender" class="fl fontLabel"> Gender: </label>
+                        <div class="new iconBox">
+
+                            <i class="fa fa-venus-mars" aria-hidden="true" style="font-size: 14px;"></i>
+                        </div>
+                        <div class="fr" style="float:left;margin-left: 25px;">
+                            <select name="cgender" id="cgender" style="height:33px;width:173px;">
+                                <option value="Male">Male</option>
+                                <option value="Female">Female</option>
+                            </select>
+                        </div>
+                        <div class="clr"></div>
+                    </div>
+
+                    <!--Second name-->
+                    <div class="box">
+                        <label for="HDL Level" class="fl fontLabel"> HDL Level: </label>
+                        <div class="fl iconBox">
+                            <i class="fa fa-male" aria-hidden="true" style="font-size: 14px;"></i>
+                        </div>
+                        <div class="fr">
+                            <input type="text" required name="HDL Level" id="hdl" placeholder="mg/dL" class="textBox">
+                        </div>
+                        <div class="clr"></div>
+                    </div>
+                    <!--Second name-->
+
+
+                    <!---Phone No.------>
+                    <div class="box">
+                        <label for="triglyceride level" class="fl fontLabel"> triglyceride level: </label>
+                        <div class="fl iconBox">
+                            <i class="fa fa-balance-scale" aria-hidden="true" style="font-size: 14px;"></i>
+                        </div>
+                        <div class="fr">
+                            <input type="text" required name="triglyceride level" id="trg" placeholder="mg/dL"
+                                class="textBox">
+                        </div>
+                        <div class="clr"></div>
+                    </div>
+                    <!---Phone No.---->
+
+
+                    <!---Submit Button------>
+                    <div class="box" style="background: #2d3e3f">
+                        <input type="Submit" name="submit" class="submit" id="calculate" value="CALCULATE"
+                            onclick="cholestrol()">
+                    </div>
+                </div>
+
+                <div class="info-cont">
+                    <div id="info-text" style="color:#2d3e3f">Result over here...</div>
+                    <div id="info-text-levels" style="color:#2d3e3f"></div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+    <script type="text/javascript">
+        var images = ["doctors.jpg", "bp.webp", "patient.jpg", "tech.webp"];
+        $(function () {
+            var i = 0;
+            $("#dvImage").css("background-image", "url(" + images[i] + ")");
+            setInterval(function () {
+                i++;
+                if (i == images.length) {
+                    i = 0;
+                }
+                $("#dvImage").fadeOut("slow", function () {
+                    $(this).css("background-image", "url(" + images[i] + ")");
+                    $(this).fadeIn("slow");
+                });
+            }, 5000);
+        });
+    </script>
+
+    <script>
+
+        zingchart.MODULESDIR = 'https://cdn.zingchart.com/modules/'; var aCountries = ['Argentina', 'Australia', 'Austria', 'Belgium', 'Bolivia', 'Brazil', 'Canada', 'Chile', 'China', 'Croatia', 'Denmark', 'Egypt', 'Finland', 'France', 'Germany', 'Greece', 'Iceland', 'India', 'Indonesia', 'Italy', 'Japan', 'Luxembourg', 'Mexico', 'Netherlands', 'Norway', 'Peru', 'Portugal', 'Romania', 'Spain', 'Switzerland', 'Thailand', 'United Kingdom', 'United States', 'Venezuela'];
+        var iLineX = 70;
+        var iLineY = 80;
+
+        var chkList = $('#chkCountries');
+
+        $.each(aCountries, function (i) {
+            var id = aCountries[i].replace(/[^a-zA-Z]/gi, '').toLowerCase();
+
+            var oLabel = $('<label/>')
+                .attr('id', 'lbl' + id)
+                .attr('for', id)
+                .appendTo(chkList);
+
+            var oInput = $('<input/>')
+                .attr('type', 'checkbox')
+                .attr('id', id)
+                .attr('class', 'chkCountry')
+                .attr('checked', false)
+                .appendTo(oLabel);
+
+            oLabel.append(aCountries[i]);
+
+        });
+
+        $(".chkCountry").click(function () {
+            zingchart.exec('zc', 'update', {
+                graphid: 0
+            });
+        });
+
+        var _r_ = function (min, max) {
+            return Math.round(min + (max - min) * Math.random());
+        }
+
+        var nrVal = aCountries.length;
+        var aData = [];
+        var aDataTxt = [];
+
+        for (var i = 0; i < nrVal; i++) {
+            var r1 = _r_(iLineX - 30, iLineX + 30);
+            var r2 = _r_(iLineY - 20, iLineY + 20);
+            aData.push([r1, r2]);
+
+            aDataTxt.push(aCountries[i].replace(/[^a-zA-Z]/gi, '').toLowerCase());
+        }
+
+        var chartJSON = {
+
+            graphset: [
+                {
+                    type: 'scatter',
+                    backgroundColor: '#FFF',
+
+                    title: {
+                        text: 'Life Expectancy and Self-reported Health(OECD)',
+                        fontSize: 22,
+                        align: 'left',
+                        paddingLeft: 10
+                    },
+                    subtitle: {
+                        text: 'Self-reported Health (scale from 0-100)',
+                        fontSize: 12,
+                        fontWeight: 'normal',
+                        fontStyle: 'italic',
+                        padding: '5 0 10 10',
+                        align: 'left'
+                    },
+
+                    scaleX: {
+                        offset: 40,
+                        step: 10,
+                        lineWidth: 0,
+                        label: {
+                            text: 'Self-reported Health (scale from 0-100)',
+                            fontColor: '#000',
+                            fontWeight: 'normal',
+                            fontSize: 11,
+                            paddingTop: 15
+                        },
+                        markers: [
+                            {
+                                type: 'line',
+                                lineStyle: 'dotted',
+                                lineColor: '#000',
+                                text: 'low<br><br>high',
+                                valueRange: true,
+                                label: {
+                                    offsetX: -40,
+                                    paddingBottom: 40,
+                                    fontWeight: 'bold'
+                                },
+                                range: [iLineX]
+                            }
+                        ],
+                        item: {
+                            color: '#000',
+                            fontWeight: 'normal',
+                            fontSize: 11
+                        },
+                        guide: {
+                            visible: false
+                        },
+                        tick: {
+                            visible: true
+                        }
+                    },
+                    tooltip: {
+                        text: '<span style="font-size:17px;font-weight:bold;">%data-countries</span><br><br>Life expectancy: <b>%node-value</b> years<br>Self-reported health: <b>%scale-key-value</b>',
+                        align: 'left',
+                        padding: 10,
+                        fontSize: 12
+                    },
+
+                    plot: {
+                        dataCountries: aCountries,
+                        dataTxt: aDataTxt,
+                        animation: {
+                            speed: 400,
+                            effect: 1,
+                            method: 0,
+                            sequence: 0
+                        }
+                    },
+                    scaleY: {
+                        offset: 40,
+                        minValue: 'auto',
+                        lineWidth: 0,
+                        label: {
+                            text: 'Life Expectancy',
+                            fontColor: '#000',
+                            fontWeight: 'normal',
+                            fontSize: 11,
+                            paddingRight: 15
+                        },
+                        markers: [
+                            {
+                                type: 'line',
+                                lineStyle: 'dotted',
+                                lineColor: '#000',
+                                text: 'high<br><br>low',
+                                label: {
+                                    offsetY: 20,
+                                    paddingLeft: 20,
+                                    fontWeight: 'bold'
+                                },
+                                range: [iLineY]
+                            }
+                        ],
+                        item: {
+                            color: '#000',
+                            fontWeight: 'normal',
+                            fontSize: 11
+                        },
+                        guide: {
+                            visible: false
+                        },
+                        tick: {
+                            visible: true
+                        }
+                    },
+
+                    series: [
+                        {
+                            values: aData,
+                            hoverMarker: {
+                                visible: false
+                            },
+                            valueBox: {
+                                text: '%data-countries',
+                                fontSize: 11,
+                                fontWeight: 'bold',
+                                color: '#000',
+                                offsetY: 45,
+                                jsRule: 'plot_rule(2)'
+                            },
+                            tooltip: {
+                                jsRule: 'plot_rule(1)'
+                            },
+                            marker: {
+                                borderWidth: 1,
+                                borderColor: '#FFF',
+                                shadowDistance: 3,
+                                fillType: 'linear',
+                                fillAngle: 45,
+                                size: 20,
+                                jsRule: 'plot_rule(0)'
+                            }
+                        }
+                    ]
+                }
+            ]
+
+        };
+
+
+        window.plot_rule = function (p, t) {
+            var obj = {}, color = '', fontColor = '#FFF';
+
+            var iChecked = $(".chkCountry:checked").length;
+
+            if (t === '0' || t === '1') {
+                if (p.value <= iLineY && p.key <= iLineX) {
+                    color = '#D01C8B #821257';
+                } else if (p.value > iLineY && p.key <= iLineX) {
+                    color = '#B8E186 #799358';
+                    fontColor = '#000';
+                } else if (p.value <= iLineY && p.key > iLineX) {
+                    color = '#F1B6DA #A37C94';
+                    fontColor = '#000';
+                } else if (p.value > iLineY && p.key > iLineX) {
+                    color = '#4DAC26 #2B5E15';
+                }
+
+                $('#lbl' + p["data-txt"]).css('background-color', color.split(' ')[0]);
+
+                obj['background-color'] = color;
+                obj['font-color'] = fontColor;
+
+                if (t === '0') {
+                    obj['shadow'] = $('#' + p["data-txt"]).prop("checked");
+                    obj['border-color'] = $('#' + p["data-txt"]).prop("checked") ? '#666' : '#FFF';
+                    obj['size'] = $('#' + p["data-txt"]).prop("checked") ? 22 : 20;
+                    obj['alpha'] = $('#' + p["data-txt"]).prop("checked") ? 1 : (iChecked === 0 ? 0.75 : 0.05);
+                }
+            } else {
+                obj['visible'] = $('#' + p["data-txt"]).prop("checked");
+            }
+            return obj;
+        };
+
+        var update = function () {
+
+            for (var i = 0; i < nrVal; i++) {
+                aData[i][0] += _r_(-2, 2);
+                aData[i][1] += _r_(-2, 2);
+            }
+
+            zingchart.exec('zc', 'setseriesvalues', {
+                plotindex: 0,
+                values: aData
+            });
+        };
+
+        zingchart.render({
+            id: 'zc',
+            width: 650,
+            height: 450,
+            output: 'svg',
+            data: chartJSON,
+            events: {
+                load: function () {
+                    setInterval(function () {
+                        update();
+                    }, 2500);
+                }
+            }
+        });
+
+
+        function myfunc(id) {
+            const menu = document.querySelectorAll('.details');
+            const main = document.querySelectorAll('.container');
+
+
+            for (i = 0; i < menu.length; i++) {
+                menu[i].classList.remove('active');
+                main[i].classList.add('active2');
+                // console.log(main[i]);
+            }
+
+            document.getElementById(id).classList.add('active');
+            document.getElementById(id + 'cont').classList.remove('active2');
+
+        }
+
+        // function bmi() {
+        //     var age = document.getElementById('age').value;
+        //     if (age < 2) { alert('please provide a proper age') }
+        //     else {
+        //         var gender = document.getElementById("gender").value;
+        //         var height = document.getElementById('height').value;
+        //         var weight = document.getElementById('weight').value;
+        //         console.log(age, gender, height, weight);
+
+        //         var bmicalc = weight / ((height ** 2) * 0.0001);
+
+        //         bmicalc = bmicalc.toFixed(2);
+        //         if (bmicalc < 18.5) {
+        //             alert('Underweight');
+        //         }
+        //         else if (bmicalc >= 18.5 && bmicalc <= 24.9) {
+        //             alert('Optimum Range');
+        //         }
+        //         else if (bmicalc >= 25 && bmicalc <= 34.9) {
+        //             alert('Class 1 Obesity');
+        //         }
+        //         else if (bmicalc >= 35 && bmicalc <= 39.9) {
+        //             alert('Class 2 Obesity');
+        //         }
+        //         else {
+        //             alert('Class 3 Obesity');
+        //         }
+        //         // console.log(bmicalc.toFixed(2));
+
+        //     }
+        //     return bmicalc;
+        // }
+
+        window.onload = () => {
+            "use strict";
+
+            const main = document.querySelector(".container-main");
+            const checkBtn = document.querySelector("#check");
+            const spinner = document.querySelector("#spinner");
+            const height = document.querySelector("#height");
+            const weight = document.querySelector("#weight");
+            const smallText = document.querySelector(".small-text");
+            const bigText = document.querySelector(".value");
+            let bmi = 0;
+
+            var expanded = false;
+
+
+            checkBtn.addEventListener("click", showLevel);
+            height.addEventListener("change", setBMI);
+            weight.addEventListener("change", setBMI);
+
+            function setBMI() {
+                console.log(height.value, weight.value);
+                bmi = weight.value / ((height.value ** 2) * 0.0001);
+                bmi = bmi.toFixed(2);
+                console.log(bmi);
+            }
+
+            function handleClick() {
+
+                if (!expanded) {
+                    main.style.marginLeft = "500px";
+                    aside.style.left = "0px";
+                } else {
+                    aside.style.left = "-500px";
+                    main.style.marginLeft = "0";
+                }
+                expanded = !expanded;
+            }
+
+            function showLevel() {
+                let m = 165 / 75;
+                let c = 165 - (m * 75);
+                let val = bmi;
+                if (val < 5)
+                    val = 5;
+                if (val > 75)
+                    val = 75;
+                let deg = (m * val) + c;
+                spinner.style.transform = "Rotate(" + deg + "deg)";
+
+                let status = showReport(bmi);
+                smallText.innerHTML = status;
+                bigText.innerHTML = bmi + " bmi";
+            }
+            function showReport(v, val) {
+                let text = "";
+                let bmis = {
+                    "very severly underweight": (v <= 15),
+                    "severly underweight": (v > 16 && v <= 16),
+                    "underweight": (v > 16 && v <= 18.5),
+                    "Normal (Healthy Weight)": (v > 18.5 && v <= 25),
+                    "Overweight": (v > 25 && v <= 30),
+                    "Obese Class I (Moderately obese)": (v > 30 && v <= 35),
+                    "Obese Class II (Severely obese)": (v > 35 && v < 40),
+                    "Obese Class III (Very severely obese)": (v >= 40 && v <= 45),
+                    "Obese Class IV (Morbidly Obese)": (v > 45 && v <= 50),
+                    "Obese Class V (Super Obese)": (v > 50 && v <= 60),
+                    "Obese Class VI (Hyper Obese)": (v > 60)
+                };
+                for (let i in bmis) {
+                    if (bmis[i]) {
+                        text += i;
+                        break;
+                    }
+                }
+                return text;
+            }
+
+        }
+
+
+        function cholestrol() {
+            var ldl = parseFloat(document.getElementById('ldl').value);
+            var gender = (document.getElementById("cgender").value);
+            var hdl = parseFloat(document.getElementById('hdl').value);
+            var trg = parseFloat(document.getElementById('trg').value);
+            var info = document.getElementById('info-text');
+            var info_level = document.getElementById('info-text-levels');
+
+            // console.log(ldl, gender, hdl, trg);
+            var totalchol = ldl + hdl + 0.2 * trg;
+            console.log(ldl, hdl, trg, totalchol);
+            if (totalchol < 200) {
+                if (ldl < 100) {
+                    if (hdl >= 60) {
+                        info.innerText = 'Healthy Heart ! Perfect HDl and LDL Level';
+                    } else {
+                        info.innerText = 'Healthy Heart ! HDL Level a bit low and ldl a bit high but not to worry since Total Cholestrol is under optimum range !';
+                    }
+                } else {
+                    info.innerText = 'Healthy Heart ! LDL level is not in the optimum range but total cholestrol is in the optimum range !';
+                }
+            } else if (totalchol >= 200 && totalchol <= 239) {
+                if (ldl >= 100 && ldl <= 159) {
+                    if (hdl >= 40 && hdl <= 59) {
+                        info.innerText = 'Total Cholestrol At Risky Level ! Bad HDL and LDL Level !';
+                    }
+                    else {
+                        info.innerText = 'Total Cholestrol At Risky Level ! High LDL Level but low HDL Level!';
+                    }
+                }
+                else {
+                    info.innerText = 'Total Cholestrol At Risky Level ! LDL Level in Risky Range';
+                }
+
+            } else if (totalchol >= 240) {
+                if (ldl >= 160) {
+
+                    if (hdl < 50) {
+                        info.innerText = 'Total Cholestrol extremely Dangerous! Bad LDL and HDL level';
+                    }
+                    else {
+                        info.innerText = 'Dangerous ! High LDL Level but low HDL level !';
+                    }
+                }
+                else {
+                    info.innerText = 'Total Cholestrol Dangerous ! LDL level not too much but still in risky range';
+                }
+            }
+
+            info_level.innerHTML = '<br>Total Cholestrol (TC) : <b>' + totalchol + '</b><br>TC/LDL Ratio : <b>' + totalchol / ldl + '</b><br>TC/HDL Ratio : <b>' + totalchol / hdl + '</b>';
+
+        }
+
+    </script>
+
+</body>
+
+</html>
